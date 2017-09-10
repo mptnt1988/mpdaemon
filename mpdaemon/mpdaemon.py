@@ -31,7 +31,10 @@ class DaemonWrapper:
         self._logger = logging.getLogger(self._loggerName)
         self._logger.setLevel(logging.INFO)
         formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
-        handler = logging.FileHandler(self._logFile)
+        try:
+            handler = logging.FileHandler(self._logFile)
+        except (IOError):
+            self._mpdaemon_init_error()
         handler.setFormatter(formatter)
         self._logger.addHandler(handler)
         self._logger.info("Command: " + " ".join(sys.argv[1:]))
@@ -63,5 +66,8 @@ class DaemonWrapper:
         try:
             self._daemon_runner.do_action()
         except (LockFailed):
-            print("HELP: Try \"mpdaemon init\" first")
-            sys.exit(1)
+            self._mpdaemon_init_error()
+
+    def _mpdaemon_init_error(self):
+        print("HELP: Try \"mpdaemon init\" first")
+        sys.exit(1)

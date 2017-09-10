@@ -10,7 +10,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 
 setup(
     name='mpdaemon',
-    version='0.1.1',
+    version='0.1.2',
     description='Wrapper of python-daemon for easy use.',
     long_description=long_description,
     url='https://github.com/mptnt1988/mpdaemon',
