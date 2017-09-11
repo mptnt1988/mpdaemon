@@ -80,11 +80,10 @@ example2.py
 
 
  def scheduling(daemon, t_mins):
+     schedule.every(t_mins).minutes.do(job)
      while True:
-         schedule.every(t_mins).minutes.do(job)
-         while True:
-             schedule.run_pending()
-             time.sleep(1)
+         schedule.run_pending()
+         time.sleep(1)
 
 
  if __name__ == "__main__":
