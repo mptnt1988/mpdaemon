@@ -1,4 +1,4 @@
-from daemon import runner
+from .daemon import runner
 import __main__
 import os
 import logging

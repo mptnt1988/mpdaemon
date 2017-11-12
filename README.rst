@@ -1,6 +1,6 @@
 mpdaemon
 ========
-Wrapper of `python-daemon <https://pypi.python.org/pypi/python-daemon/>`_ for easy use.
+Wrapper of `python-daemon <https://pypi.python.org/pypi/python-daemon/>`_ (with modification) for easy use.
 
 Installation
 ============
@@ -10,13 +10,13 @@ Source
 
  git clone https://github.com/mptnt1988/mpdaemon.git
  cd mpdaemon
- pip install .
+ pip3 install .
 
 PyPI
 ~~~~
 ::
 
- pip install mpdaemon
+ pip3 install mpdaemon
 
 Usage
 =====
@@ -25,6 +25,8 @@ Initialization
 ::
 
  mpdaemon init
+
+*/var/log/mpdaemon/* for logs and */tmp/mpdaemon/run/* for pids will be created after this step. "sudo" might be required.
 
 Implementation
 ~~~~~~~~~~~~~~
@@ -35,10 +37,10 @@ Running
 Assume that script file is script.py
 ::
 
- python script.py start
- python script.py status
- python script.py restart
- python script.py stop
+ python3 script.py start
+ python3 script.py status
+ python3 script.py restart
+ python3 script.py stop
 
 Log file is */var/log/mpdaemon/script.log*
 

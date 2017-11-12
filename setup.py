@@ -10,7 +10,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 
 setup(
     name='mpdaemon',
-    version='0.1.2',
+    version='0.2.0',
     description='Wrapper of python-daemon for easy use.',
     long_description=long_description,
     url='https://github.com/mptnt1988/mpdaemon',
@@ -29,13 +29,12 @@ setup(
         # Pick license
         'License :: OSI Approved :: BSD License',
         # Specify the Python versions
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
     ],
     keywords='daemon development',
     packages=find_packages(exclude=['contrib', 'docs', 'tests*']),
     install_requires=[
-        'python-daemon'
+        "lockfile >=0.10",
     ],
     entry_points={
         'console_scripts': [

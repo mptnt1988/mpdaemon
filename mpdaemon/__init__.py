@@ -1,7 +1,6 @@
 from .mpdaemon import DaemonWrapper
 import sys
 import subprocess
-import os
 import getpass
 
 
