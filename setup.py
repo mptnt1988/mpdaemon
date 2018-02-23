@@ -10,7 +10,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 
 setup(
     name='mpdaemon',
-    version='0.2.0',
+    version='0.3.0',
     description='Wrapper of python-daemon for easy use.',
     long_description=long_description,
     url='https://github.com/mptnt1988/mpdaemon',
@@ -36,11 +36,6 @@ setup(
     install_requires=[
         "lockfile >=0.10",
     ],
-    entry_points={
-        'console_scripts': [
-            'mpdaemon = mpdaemon:main',
-        ],
-    },
     test_suite='nose.collector',
     tests_require=['nose'],
 )

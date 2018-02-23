@@ -20,13 +20,22 @@ PyPI
 
 Usage
 =====
-Initialization
-~~~~~~~~~~~~~~
-::
+APIs
+~~~~
 
- mpdaemon init
+.. code-block:: python
 
-*/var/log/mpdaemon/* for logs and */tmp/mpdaemon/run/* for pids will be created after this step. "sudo" might be required.
+ daemon = DaemonWrapper(serviceName=None, func=None, *args, **kwargs)
+
+If *serviceName* is None, it defaults to script's ext-stripped filename.
+
+**func(*args, \*\*kwargs)** will be executed when running daemon.run()
+
+.. code-block:: python
+
+ daemon.run(func=None, *a, **ka)
+
+Execute specified **func(*a, \*\*ka)**. If func is None, *daemon*'s func & args initialized in the constructor is executed.
 
 Implementation
 ~~~~~~~~~~~~~~
@@ -42,7 +51,11 @@ Assume that script file is script.py
  python3 script.py restart
  python3 script.py stop
 
-Log file is */var/log/mpdaemon/script.log*
+Log file is *~/.mpdaemon/log/<service_name>.log*
+
+PID file is *~/.mpdaemon/pid/<service_name>.pid*
+
+(<service_name> is specified in script.py or 'script' by default)
 
 Examples
 ========
@@ -64,7 +77,7 @@ example1.py
 
  if __name__ == "__main__":
      daemon = DaemonWrapper()
-     daemon.run_func(log_to_file, daemon)
+     daemon.run(log_to_file, daemon)
 
 Example 2
 ~~~~~~~~~
@@ -78,10 +91,10 @@ example2.py
 
 
  def job():
-     execfile('writeDate.py')
+     exec(open("/tmp/writeDate.py").read())
 
 
- def scheduling(daemon, t_mins):
+ def scheduling(t_mins):
      schedule.every(t_mins).minutes.do(job)
      while True:
          schedule.run_pending()
@@ -89,10 +102,10 @@ example2.py
 
 
  if __name__ == "__main__":
-     daemon = DaemonWrapper()
-     daemon.run_func(scheduling, daemon, 1)
+     daemon = DaemonWrapper(None, scheduling, 1)
+     daemon.run()
 
-writeDate.py
+/tmp/writeDate.py
 
 .. code-block:: python
 
