@@ -2,6 +2,10 @@ mpdaemon
 ========
 Wrapper of `python-daemon <https://pypi.python.org/pypi/python-daemon/>`_ (with modification) for easy use.
 
+.. image:: https://travis-ci.org/mptnt1988/mpdaemon.svg?branch=master
+    :target: https://travis-ci.org/mptnt1988/mpdaemon
+.. image:: https://badge.fury.io/py/mpdaemon.svg
+    :target: https://badge.fury.io/py/mpdaemon
 Installation
 ============
 Source
